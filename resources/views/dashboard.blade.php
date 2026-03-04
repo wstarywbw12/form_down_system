@@ -7,14 +7,37 @@
                 <h4 class="mb-sm-0">Starter</h4>
 
                 <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
-                        <li class="breadcrumb-item active">Starter</li>
-                    </ol>
+                    <!-- Buttons with Label Right -->
+                    <button type="button" class="btn btn-dark btn-label waves-effect right waves-light" data-bs-toggle="modal" data-bs-target="#exampleModalgrid"><i
+                            class="ri-filter-line label-icon align-middle fs-16 ms-2"></i> Filter</button>
                 </div>
 
             </div>
         </div>
     </div>
-    <!-- end page title -->
+
+
+    <div class="row">
+        @for ($i = 0; $i < 8; $i++)
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">Triase</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Send a link to apply on mobile device. Appropriately communicate one-to-one technology.</p>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-primary btn-label waves-effect waves-light"><i
+                                    class="ri-eye-line label-icon align-middle fs-16 me-2"></i> Lihat</button>
+                            <button type="button" class="btn btn-secondary btn-label waves-effect waves-light"><i
+                                    class="ri-download-line label-icon align-middle fs-16 me-2"></i> Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endfor
+    </div>
+
+    @include('pages.dashboard.modal')
 @endsection

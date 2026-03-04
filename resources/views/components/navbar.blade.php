@@ -33,38 +33,30 @@
              <ul class="navbar-nav" id="navbar-nav">
                  <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                  <li class="nav-item">
-                     <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
-                         aria-expanded="false" aria-controls="sidebarDashboards">
-                         <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">Dashboards</span>
-                     </a>
-                     <div class="collapse menu-dropdown" id="sidebarDashboards">
-                         <ul class="nav nav-sm flex-column">
-                             <li class="nav-item">
-                                 <a href="dashboard-analytics.html" class="nav-link" data-key="t-analytics">
-                                     Analytics </a>
-                             </li>
-                             <li class="nav-item">
-                                 <a href="dashboard-crm.html" class="nav-link" data-key="t-crm"> CRM </a>
-                             </li>
-                         </ul>
-                     </div>
-                 </li> <!-- end Dashboard Menu -->
+                    <a class="nav-link menu-link active" href="">
+                        <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">Dashboards</span>
+                    </a>
+                </li>
 
                  <li class="nav-item">
                      <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button"
                          aria-expanded="false" aria-controls="sidebarLayouts">
-                         <i class="bx bx-layout"></i> <span data-key="t-layouts">Layouts</span> <span
+                         <i class="bx bx-layout"></i> <span data-key="t-layouts">Data Master</span> <span
                              class="badge badge-pill bg-danger" data-key="t-hot">Hot</span>
                      </a>
                      <div class="collapse menu-dropdown" id="sidebarLayouts">
                          <ul class="nav nav-sm flex-column">
                              <li class="nav-item">
                                  <a href="layouts-vertical.html" target="_blank" class="nav-link"
-                                     data-key="t-vertical">Vertical</a>
+                                     data-key="t-vertical">Jenis</a>
                              </li>
                              <li class="nav-item">
                                  <a href="layouts-detached.html" target="_blank" class="nav-link"
-                                     data-key="t-detached">Detached</a>
+                                     data-key="t-detached">Form</a>
+                             </li>
+                             <li class="nav-item">
+                                 <a href="layouts-detached.html" target="_blank" class="nav-link"
+                                     data-key="t-detached">User</a>
                              </li>
                          </ul>
                      </div>

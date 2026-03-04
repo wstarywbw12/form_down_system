@@ -23,6 +23,25 @@
     <!-- custom Css-->
     <link href="{{ asset('/') }}assets/css/custom.min.css" rel="stylesheet" type="text/css" />
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
+    @stack('styles')
+
+    <style>
+        .select2-container .select2-selection--single {
+            height: 38px;
+            padding: 5px 12px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 28px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 36px;
+        }
+    </style>
 
 </head>
 
@@ -31,7 +50,7 @@
     <!-- Begin page -->
     <div id="layout-wrapper">
 
-      @include('partials.header')
+        @include('partials.header')
 
         <!-- removeNotificationModal -->
         <div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
@@ -44,8 +63,7 @@
                     <div class="modal-body">
                         <div class="mt-2 text-center">
                             <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
-                                colors="primary:#f7b84b,secondary:#f06548"
-                                style="width:100px;height:100px"></lord-icon>
+                                colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
                             <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
                                 <h4>Are you sure ?</h4>
                                 <p class="text-muted mx-4 mb-0">Are you sure you want to remove this Notification ?</p>
@@ -62,7 +80,7 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
         <!-- ========== App Menu ========== -->
-       @include('components.navbar')
+        @include('components.navbar')
         <!-- Left Sidebar End -->
         <!-- Vertical Overlay-->
         <div class="vertical-overlay"></div>
@@ -75,13 +93,13 @@
             <div class="page-content">
                 <div class="container-fluid">
 
-                   @yield('content')
+                    @yield('content')
                 </div>
                 <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
 
-          @include('partials.footer')
+            @include('partials.footer')
         </div>
         <!-- end main content-->
 
@@ -855,10 +873,8 @@
                                             </span>
                                         </span>
                                         <!-- <div id="preloader"> -->
-                                        <div id="status"
-                                            class="d-flex align-items-center justify-content-center">
-                                            <div class="spinner-border text-primary avatar-xxs m-auto"
-                                                role="status">
+                                        <div id="status" class="d-flex align-items-center justify-content-center">
+                                            <div class="spinner-border text-primary avatar-xxs m-auto" role="status">
                                                 <span class="visually-hidden">Loading...</span>
                                             </div>
                                         </div>
@@ -908,8 +924,8 @@
                     <button type="button" class="btn btn-light w-100" id="reset-layout">Reset</button>
                 </div>
                 <div class="col-6">
-                    <a href="https://1.envato.market/velzon-admin" target="_blank"
-                        class="btn btn-primary w-100">Buy Now</a>
+                    <a href="https://1.envato.market/velzon-admin" target="_blank" class="btn btn-primary w-100">Buy
+                        Now</a>
                 </div>
             </div>
         </div>
@@ -923,8 +939,21 @@
     <script src="{{ asset('/') }}assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
     <script src="{{ asset('/') }}assets/js/plugins.js"></script>
 
+
+
+    <!--jquery cdn-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!--select2 cdn-->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('/') }}assets/js/pages/select2.init.js"></script>
+
     <!-- App js -->
     <script src="{{ asset('/') }}assets/js/app.js"></script>
+
+    @stack('scripts')
+
 </body>
 
 </html>
