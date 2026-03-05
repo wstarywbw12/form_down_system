@@ -71,10 +71,7 @@
             <div class="col-12 col-md-6 col-lg-3">
                 <div class="card">
                     <div class="card-header">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h4 class="card-title mb-0">{{ $item->jenis->jenis }}</h4>
-                            <a href="{{ asset('storage/' . $item->file) }}" target="_blank" title="Print"><i class="btn btn-sm btn-soft-primary fs-20 las la-print" data-bs-toggle="tooltip" data-bs-placement="top"></i></a>
-                        </div>
+                       <h4 class="card-title mb-0">{{ $item->jenis->jenis }}</h4>
                     </div>
                     <div class="card-body">
                         <p>{{ $item->keterangan }}</p>
