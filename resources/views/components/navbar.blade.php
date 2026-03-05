@@ -47,15 +47,15 @@
                      <div class="collapse menu-dropdown" id="sidebarLayouts">
                          <ul class="nav nav-sm flex-column">
                              <li class="nav-item">
-                                 <a href="layouts-vertical.html" target="_blank" class="nav-link"
+                                 <a href="{{ route('jenis.index') }}" class="nav-link"
                                      data-key="t-vertical">Jenis</a>
                              </li>
                              <li class="nav-item">
-                                 <a href="layouts-detached.html" target="_blank" class="nav-link"
+                                 <a href="{{ route('forms.index') }}" class="nav-link"
                                      data-key="t-detached">Form</a>
                              </li>
                              <li class="nav-item">
-                                 <a href="layouts-detached.html" target="_blank" class="nav-link"
+                                 <a href="{{ route('users.index') }}" class="nav-link"
                                      data-key="t-detached">User</a>
                              </li>
                          </ul>
