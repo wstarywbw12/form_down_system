@@ -4,9 +4,9 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0">Starter</h4>
+                <h4 class="mb-sm-0 d-none d-sm-block">Dashboard</h4>
 
-                <div class="page-title-right d-flex gap-2">
+                <div class="page-title-right d-flex gap-2 mb-3 mb-sm-0">
                     <!-- Search Form -->
                     <form action="{{ route('dashboard') }}" method="GET" class="d-flex">
                         @if(request('jenis_id'))
