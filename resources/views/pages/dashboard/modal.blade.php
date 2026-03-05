@@ -1,7 +1,7 @@
 <div id="exampleModalgrid" class="modal fade" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog ">
 
-        <form action="" method="GET">
+        <form action="{{ route('dashboard') }}" method="GET">
 
             <div class="modal-content">
                 <div class="modal-header py-3 bg-light">
@@ -13,30 +13,30 @@
                         <div class="col-sm-12 mb-3">
                             <div class="form-group">
                                 <label for="condition">Jenis</label>
-                                <select class="form-control js-example-basic-single" name="condition" id="condition"
+                                <select class="form-control js-example-basic-single" name="jenis_id" id="jenis_id"
                                     data-width="100%">
                                     <option value="">-- Semua Jenis --</option>
-                                    <option value="Baik" {{ request('condition') == 'Baik' ? 'selected' : '' }}>Baik
-                                    </option>
-                                    <option value="Rusak Ringan"
-                                        {{ request('condition') == 'Rusak Ringan' ? 'selected' : '' }}>Rusak Ringan
-                                    </option>
-                                    <option value="Rusak Berat"
-                                        {{ request('condition') == 'Rusak Berat' ? 'selected' : '' }}>Rusak Berat
-                                    </option>
+                                    @foreach ($jenisList as $jenis)
+                                        <option value="{{ $jenis->id }}"
+                                            {{ request('jenis_id') == $jenis->id ? 'selected' : '' }}>
+                                            {{ $jenis->jenis }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
 
                     </div>
 
-                    
+
                 </div>
                 <div class="modal-footer">
-                    <a href="" class="btn btn-danger btn-label waves-effect right waves-light"><i
-                        class="ri-refresh-line label-icon align-middle fs-16 ms-2"></i> Reset</a>
+                    <a href="{{ route('dashboard') }}" class="btn btn-danger btn-label waves-effect right waves-light">
+                        <i class="ri-refresh-line label-icon align-middle fs-16 ms-2"></i>
+                        Reset
+                    </a>
                     <button type="submit" class="btn btn-dark btn-label waves-effect right waves-light"><i
-                        class="ri-filter-line label-icon align-middle fs-16 ms-2"></i> Filter</button>
+                            class="ri-filter-line label-icon align-middle fs-16 ms-2"></i> Filter</button>
                 </div>
             </div>
 

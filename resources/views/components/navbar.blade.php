@@ -33,7 +33,7 @@
              <ul class="navbar-nav" id="navbar-nav">
                  <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                  <li class="nav-item">
-                    <a class="nav-link menu-link active" href="">
+                    <a class="nav-link menu-link active" href="{{ route('dashboard') }}">
                         <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">Dashboards</span>
                     </a>
                 </li>
