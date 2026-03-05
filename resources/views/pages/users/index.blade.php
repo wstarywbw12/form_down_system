@@ -29,36 +29,36 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle text-nowrap"
-                        style="width:100%">
-                        <thead>
-                            <tr>
-                                <th width="4%" class="text-end">No.</th>
-                                <th width="17%" >Username</th>
-                                <th width="20%">Email</th>
-                                <th >Role</th>
-                                <th width="13%" class="text-center"><i class="bx bx-cog"></i></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td width="4%" class="text-center">1</td>
-                                <td>Jhon</td>
-                                <td>jhon@example.com</td>
-                                <td>Admin</td>
-                                <td width="13%" class="text-end">
-                                    <button class="btn btn-info btn-sm mr-1 align-middle"
-                                        >
-                                        <i class="bx bxs-edit align-middle"></i> Ubah
-                                    </button>
-                                    <a href="javascript:void(0);" class="btn btn-sm btn-danger  btn-delete"
-                                        data-url="">
-                                        <i class="bx bx-trash"></i> Hapus
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped align-middle text-nowrap ">
+                            <thead>
+                                <tr>
+                                    <th width="4%" class="text-end">No.</th>
+                                    <th width="17%">Username</th>
+                                    <th width="20%">Email</th>
+                                    <th>Role</th>
+                                    <th width="13%" class="text-center"><i class="bx bx-cog"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td width="4%" class="text-center">1</td>
+                                    <td>Jhon</td>
+                                    <td>jhon@example.com</td>
+                                    <td>Admin</td>
+                                    <td width="13%" class="text-end">
+                                        <button class="btn btn-info btn-sm mr-1 align-middle">
+                                            <i class="bx bxs-edit align-middle"></i> Ubah
+                                        </button>
+                                        <a href="javascript:void(0);" class="btn btn-sm btn-danger  btn-delete"
+                                            data-url="">
+                                            <i class="bx bx-trash"></i> Hapus
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@
                             <input type="email" class="form-control" id="email" name="email" required>
                         </div>
 
-                         <div class="mb-3">
+                        <div class="mb-3">
                             <label for="role" class="form-label">Role</label>
                             <label for="role" class="form-label">Role</label>
                             <select class="form-select" id="role" name="role" required>
@@ -95,19 +95,19 @@
                             </select>
                         </div>
 
-                         <div class="mb-3">
+                        <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="modal-footer py-2">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                                <i class="ri-close-line"></i> Tutup
+                            </button>
+                            <button type="submit" class="btn btn-dark">
+                                <i class="ri-save-line"></i> Simpan
+                            </button>
+                        </div>
                     </div>
-                    <div class="modal-footer py-2">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">
-                            <i class="ri-close-line"></i> Tutup
-                        </button>
-                        <button type="submit" class="btn btn-dark">
-                            <i class="ri-save-line"></i> Simpan
-                        </button>
-                    </div>
-                </div>
             </form>
         </div>
     </div>
