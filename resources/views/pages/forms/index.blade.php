@@ -16,10 +16,9 @@
                 <table class="table table-bordered text-nowrap align-middle">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Jenis</th>
+                            <th width="5%">No</th>
+                            <th width="15%">Jenis</th>
                             <th>Keterangan</th>
-                            <th>File</th>
                             <th width="15%">Aksi</th>
                         </tr>
                     </thead>
@@ -31,10 +30,9 @@
                                 <td>{{ $item->keterangan }}</td>
                                 <td>
                                     <a href="{{ asset('storage/' . $item->file) }}" target="_blank">
-                                        Lihat File
+                                        <span class="btn btn-info btn-sm"><i class="ri-file-line"></i>
+                                            Lihat File</span>
                                     </a>
-                                </td>
-                                <td>
                                     <button class="btn btn-info btn-sm"
                                         onclick="openEditModal(
                                 '{{ $item->id }}',
