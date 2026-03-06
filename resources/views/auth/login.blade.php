@@ -48,7 +48,7 @@
                     <div class="col-lg-12">
                         <div class="text-center mt-sm-5 mb-4 text-white-50">
                             <div>
-                                <a href="index.html" class="d-inline-block auth-logo">
+                                <a href="" class="d-inline-block auth-logo">
                                     <img src="assets/images/logo-light.png" alt="" height="20">
                                 </a>
                             </div>
@@ -67,9 +67,15 @@
                                     <p class="text-muted">Sign in to continue to Velzon.</p>
                                 </div>
                                 <div class="p-2 mt-4">
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                            Email atau kata sandi anda salah!
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                        </div>
+                                    @endif
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
-
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email</label>
                                             <input type="email" name="email" class="form-control"
@@ -78,7 +84,7 @@
 
                                         <div class="mb-3">
                                             <div class="float-end">
-                                                <a href="auth-pass-reset-basic.html" class="text-muted">Forgot
+                                                <a href="" class="text-muted">Forgot
                                                     password?</a>
                                             </div>
                                             <label class="form-label" for="password-input">Password</label>
@@ -111,7 +117,7 @@
                         <!-- end card -->
 
                         <div class="mt-4 text-center">
-                            <p class="mb-0">Don't have an account ? <a href="auth-signup-basic.html"
+                            <p class="mb-0">Don't have an account ? <a href=""
                                     class="fw-semibold text-primary text-decoration-underline"> Signup </a> </p>
                         </div>
 
@@ -134,7 +140,7 @@
                                 <script>
                                     document.write(new Date().getFullYear())
                                 </script> Velzon. Crafted with <i class="mdi mdi-heart text-danger"></i>
-                                by Themesbrand
+                                by TIM IT SIMRS
                             </p>
                         </div>
                     </div>
