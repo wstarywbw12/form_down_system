@@ -41,7 +41,7 @@
                                         <td class="text-center">
                                             <button class="btn btn-info btn-sm"
                                                 onclick="openEditModal('{{ $item->id }}','{{ $item->jenis }}')">
-                                                Ubah
+                                                <i class="bx bxs-edit align-middle"></i> Ubah
                                             </button>
 
                                             <form action="{{ route('jenis.destroy', $item->id) }}" method="POST"
@@ -49,7 +49,7 @@
                                                 onsubmit="return confirm('Yakin hapus data?')">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-danger btn-sm">Hapus</button>
+                                                <button class="btn btn-danger btn-sm"><i class="bx bx-trash"></i> Hapus</button>
                                             </form>
                                         </td>
                                     </tr>

@@ -33,18 +33,18 @@
                                         <span class="btn btn-info btn-sm"><i class="ri-file-line"></i>
                                             Lihat File</span>
                                     </a>
-                                    <button class="btn btn-info btn-sm"
+                                    <button class="btn btn-warning btn-sm"
                                         onclick="openEditModal(
                                 '{{ $item->id }}',
                                 '{{ $item->jenis_id }}',
                                 '{{ $item->keterangan }}'
-                            )">Ubah</button>
+                            )"> <i class="bx bxs-edit align-middle"></i> Ubah</button>
 
                                     <form action="{{ route('forms.destroy', $item->id) }}" method="POST"
                                         style="display:inline" onsubmit="return confirm('Yakin hapus?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger btn-sm">Hapus</button>
+                                        <button class="btn btn-danger btn-sm"><i class="bx bx-trash"></i> Hapus</button>
                                     </form>
                                 </td>
                             </tr>
