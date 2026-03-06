@@ -15,14 +15,14 @@ class DashboardController extends Controller
 
         $query = Form::with('jenis')->orderBy('id', 'desc');
 
-        // FILTER BERDASARKAN jenis_id
+        // Filter jenis
         if ($request->filled('jenis_id')) {
             $query->where('jenis_id', $request->jenis_id);
         }
 
-        // SEARCH BERDASARKAN keterangan
+        // Search keterangan
         if ($request->filled('search')) {
-            $query->where('keterangan', 'like', '%' . $request->search . '%');
+            $query->where('keterangan', 'like', '%'.$request->search.'%');
         }
 
         $data = $query->get();
@@ -34,7 +34,7 @@ class DashboardController extends Controller
     {
         $form = Form::findOrFail($id);
 
-        $path = 'public/' . $form->file;
+        $path = 'public/'.$form->file;
 
         if (Storage::exists($path)) {
             return Storage::download($path);
