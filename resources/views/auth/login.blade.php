@@ -74,41 +74,34 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                                         </div>
                                     @endif
-                                    <form method="POST" action="{{ route('login') }}">
+                                    <form method="POST" action="{{ route('login.process') }}">
                                         @csrf
+
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">Email</label>
-                                            <input type="email" name="email" class="form-control"
-                                                value="{{ old('email') }}" id="email" placeholder="Enter email">
+                                            <label class="form-label">Email / Username</label>
+                                            <input type="text" name="email" class="form-control"
+                                                placeholder="Masukkan email atau username" value="{{ old('email') }}"
+                                                required>
                                         </div>
 
                                         <div class="mb-3">
-                                            <div class="float-end">
-                                                <a href="" class="text-muted">Forgot
-                                                    password?</a>
-                                            </div>
-                                            <label class="form-label" for="password-input">Password</label>
-                                            <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input type="password" name="password"
-                                                    class="form-control pe-5 password-input"
-                                                    placeholder="Enter password" id="password-input">
-                                                <button
-                                                    class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
-                                                    type="button" id="password-addon"><i
-                                                        class="ri-eye-fill align-middle"></i></button>
-                                            </div>
-                                        </div>
+                                            <label class="form-label">Password</label>
 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="auth-remember-check">
-                                            <label class="form-check-label" for="auth-remember-check">Remember
-                                                me</label>
+                                            <div class="position-relative">
+
+                                                <input type="password" name="password" class="form-control"
+                                                    placeholder="Masukkan password" required>
+
+                                            </div>
+
                                         </div>
 
                                         <div class="mt-4">
-                                            <button class="btn btn-success w-100" type="submit">Sign In</button>
+                                            <button class="btn btn-success w-100" type="submit">
+                                                Login
+                                            </button>
                                         </div>
+
                                     </form>
                                 </div>
                             </div>

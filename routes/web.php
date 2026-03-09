@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\JenisController;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
+
+Route::post('/login-sikawan', [AuthController::class, 'login'])->name('login.process');
 
 
 Route::resource('jenis', JenisController::class);
