@@ -17,10 +17,26 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // cari user di DB Sikawan
-        $sikawanUser = SikawanUser::where('email', $request->email)
-            ->orWhere('username', $request->email)
-            ->first();
+        $input = $request->email;
+
+        // normalisasi nomor yang diinput user
+        $normalizedInput = $this->normalizePhone($input);
+
+        // cari user sikawan
+        $sikawanUsers = SikawanUser::all();
+
+        $sikawanUser = $sikawanUsers->first(function ($user) use ($normalizedInput, $input) {
+
+            // cek email
+            if ($user->email === $input) {
+                return true;
+            }
+
+            // normalisasi username dari database
+            $normalizedDb = $this->normalizePhone($user->username);
+
+            return $normalizedDb === $normalizedInput;
+        });
 
         if (!$sikawanUser) {
             return back()
@@ -35,11 +51,11 @@ class AuthController extends Controller
                 ->withInput();
         }
 
-        // cek user berdasarkan sikawan_id
+        // cek user lokal berdasarkan sikawan_id
         $user = User::where('sikawan_id', $sikawanUser->id)->first();
 
-        // cek berdasarkan name
         if (!$user) {
+
             $user = User::where('name', $sikawanUser->username)->first();
 
             if ($user) {
@@ -49,7 +65,6 @@ class AuthController extends Controller
             }
         }
 
-        // jika belum ada
         if (!$user) {
             $user = User::create([
                 'sikawan_id' => $sikawanUser->id,
@@ -62,5 +77,19 @@ class AuthController extends Controller
         Auth::login($user);
 
         return redirect()->route('dashboard');
+    }
+
+
+    private function normalizePhone($phone)
+    {
+        // hapus semua selain angka
+        $phone = preg_replace('/[^0-9]/', '', $phone);
+
+        // ubah +62 atau 62 menjadi 0
+        if (substr($phone, 0, 2) == '62') {
+            $phone = '0' . substr($phone, 2);
+        }
+
+        return $phone;
     }
 }
