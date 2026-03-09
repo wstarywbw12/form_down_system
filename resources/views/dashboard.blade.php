@@ -13,8 +13,8 @@
 
                         <!-- SEARCH -->
                         <div class="input-group">
-                            <input type="text" class="form-control" name="search" placeholder="Cari keterangan..."
-                                value="{{ request('search') }}" style="min-width:200px;">
+                            <input type="text" id="searchInput" class="form-control" name="search"
+                                placeholder="Cari keterangan..." value="{{ request('search') }}" style="min-width:200px;">
 
                             <button class="btn btn-primary" type="submit">
                                 <i class="ri-search-line"></i>
@@ -135,6 +135,17 @@
         $(document).ready(function() {
             $('.js-example-basic-single').select2({
                 width: '100%'
+            });
+
+            let timer;
+
+            $('#searchInput').on('keyup', function() {
+
+                clearTimeout(timer);
+
+                timer = setTimeout(function() {
+                    $('#searchInput').closest('form').submit();
+                }, 500); // delay 500ms supaya tidak reload terus
             });
         });
     </script>
