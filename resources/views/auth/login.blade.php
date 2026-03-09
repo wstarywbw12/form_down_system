@@ -68,19 +68,21 @@
                                 </div>
                                 <div class="p-2 mt-4">
                                     @if ($errors->any())
-                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                                            Email atau kata sandi anda salah!
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                        <div class="alert alert-danger">
+                                            <ul class="mb-0">
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
                                         </div>
                                     @endif
                                     <form method="POST" action="{{ route('login.process') }}">
                                         @csrf
 
                                         <div class="mb-3">
-                                            <label class="form-label">Email / Username</label>
+                                            <label class="form-label">Username</label>
                                             <input type="text" name="email" class="form-control"
-                                                placeholder="Masukkan email atau username" value="{{ old('email') }}"
+                                                placeholder="Masukkan username atau whatsapp" value="{{ old('email') }}"
                                                 required>
                                         </div>
 

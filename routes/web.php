@@ -14,20 +14,17 @@ Route::get('/', function () {
 
 Route::post('/login-sikawan', [AuthController::class, 'login'])->name('login.process');
 
+Route::middleware(['auth', 'admin'])->group(function () {
 
-Route::resource('jenis', JenisController::class);
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::resource('/forms', FormController::class);
+    Route::resource('jenis', JenisController::class);
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::resource('/forms', FormController::class);
 
+});
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(['auth', 'verified']);
 Route::get('/form/download/{id}', [DashboardController::class, 'download'])
     ->name('form.download');
-    
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+
 
 require __DIR__.'/auth.php';

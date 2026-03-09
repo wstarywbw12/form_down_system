@@ -17,33 +17,48 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // cek user di DB Sikawan
+        // cari user di DB Sikawan
         $sikawanUser = SikawanUser::where('email', $request->email)
             ->orWhere('username', $request->email)
             ->first();
 
-        if (! $sikawanUser) {
-            return back()->with('error', 'User tidak ditemukan di sistem Sikawan');
+        if (!$sikawanUser) {
+            return back()
+                ->withErrors(['email' => 'User tidak ditemukan di sistem Sikawan'])
+                ->withInput();
         }
 
         // cek password
-        if (! Hash::check($request->password, $sikawanUser->password)) {
-            return back()->with('error', 'Password salah');
+        if (!Hash::check($request->password, $sikawanUser->password)) {
+            return back()
+                ->withErrors(['password' => 'Password salah'])
+                ->withInput();
         }
 
-        // cek apakah user sudah ada di DB Form
-        $user = User::where('email', $sikawanUser->email)->first();
+        // cek user berdasarkan sikawan_id
+        $user = User::where('sikawan_id', $sikawanUser->id)->first();
 
-        if (! $user) {
-            // jika belum ada maka buat otomatis
+        // cek berdasarkan name
+        if (!$user) {
+            $user = User::where('name', $sikawanUser->username)->first();
+
+            if ($user) {
+                $user->update([
+                    'sikawan_id' => $sikawanUser->id
+                ]);
+            }
+        }
+
+        // jika belum ada
+        if (!$user) {
             $user = User::create([
+                'sikawan_id' => $sikawanUser->id,
                 'name' => $sikawanUser->username,
                 'email' => $sikawanUser->email,
                 'password' => $sikawanUser->password,
             ]);
         }
 
-        // login ke aplikasi form
         Auth::login($user);
 
         return redirect()->route('dashboard');
