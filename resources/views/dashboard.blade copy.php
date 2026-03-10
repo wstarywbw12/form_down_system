@@ -111,6 +111,55 @@
         </div>
     </div>
 
+
+    <div class="row">
+        @forelse ($data as $item)
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">{{ $item->jenis->jenis }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>{{ $item->keterangan }}</p>
+
+                        <div class="d-flex justify-content-between">
+
+                            {{-- Tombol Lihat --}}
+                            <a href="{{ asset('storage/' . $item->file) }}" target="_blank"
+                                class="btn btn-primary btn-label waves-effect waves-light">
+                                <i class="ri-eye-line label-icon align-middle fs-16 me-2"></i>
+                                Lihat
+                            </a>
+
+                            {{-- Tombol Download --}}
+                            <a href="{{ route('form.download', $item->id) }}"
+                                class="btn btn-secondary btn-label waves-effect waves-light">
+                                <i class="ri-download-line label-icon align-middle fs-16 me-2"></i>
+                                Download
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body text-center py-5">
+                        <i class="ri-inbox-line fs-1 text-muted"></i>
+                        <h5 class="mt-3">Tidak ada data</h5>
+                        <p class="text-muted">Tidak ada form yang ditemukan dengan kriteria pencarian Anda.</p>
+                        @if (request('search') || request('jenis_id'))
+                            <a href="{{ route('dashboard') }}" class="btn btn-primary mt-2">
+                                <i class="ri-refresh-line me-1"></i>Reset Filter
+                            </a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        @endforelse
+    </div>
+
     @include('pages.dashboard.modal')
 @endsection
 
