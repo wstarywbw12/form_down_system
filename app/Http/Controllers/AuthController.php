@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SikawanUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -18,55 +19,58 @@ class AuthController extends Controller
 
         $input = $request->email;
 
-        // normalisasi nomor
+        // normalisasi nomor yang diinput user
         $normalizedInput = $this->normalizePhone($input);
 
-        // request login ke API Sikawan
-        $response = Http::post('http://192.168.10.8/sikawan-api/public/api/v2/login', [
-            'username' => $normalizedInput,
-            'password' => $request->password
-        ]);
+        // cari user sikawan
+        $sikawanUsers = SikawanUser::all();
 
-        if (!$response->successful()) {
-            return back()->withErrors([
-                'email' => 'Tidak dapat terhubung ke server Sikawan'
-            ])->withInput();
+        $sikawanUser = $sikawanUsers->first(function ($user) use ($normalizedInput, $input) {
+
+            // cek email
+            if ($user->email === $input) {
+                return true;
+            }
+
+            // normalisasi username dari database
+            $normalizedDb = $this->normalizePhone($user->username);
+
+            return $normalizedDb === $normalizedInput;
+        });
+
+        if (!$sikawanUser) {
+            return back()
+                ->withErrors(['email' => 'User tidak ditemukan di sistem Sikawan'])
+                ->withInput();
         }
 
-        $data = $response->json();
-
-        if ($data['metaData']['code'] != "200") {
-            return back()->withErrors([
-                'email' => 'Username atau password salah'
-            ])->withInput();
+        // cek password
+        if (!Hash::check($request->password, $sikawanUser->password)) {
+            return back()
+                ->withErrors(['password' => 'Password salah'])
+                ->withInput();
         }
 
-        $karyawan = $data['response']['data']['karyawan'];
-
-        $sikawanId = $karyawan['id'];
-        $nama = $karyawan['nama'];
-
-        // cek user lokal
-        $user = User::where('sikawan_id', $sikawanId)->first();
+        // cek user lokal berdasarkan sikawan_id
+        $user = User::where('sikawan_id', $sikawanUser->id)->first();
 
         if (!$user) {
 
-            // cek berdasarkan name (jika sebelumnya sudah ada)
-            $user = User::where('name', $normalizedInput)->first();
+            $user = User::where('name', $sikawanUser->username)->first();
 
             if ($user) {
                 $user->update([
-                    'sikawan_id' => $sikawanId,
-                    'name' => $nama
+                    'sikawan_id' => $sikawanUser->id
                 ]);
             }
         }
 
-        // jika belum ada buat user baru
         if (!$user) {
             $user = User::create([
-                'sikawan_id' => $sikawanId,
-                'name' => $nama
+                'sikawan_id' => $sikawanUser->id,
+                'name' => $sikawanUser->username,
+                'email' => $sikawanUser->email,
+                'password' => $sikawanUser->password,
             ]);
         }
 
@@ -75,12 +79,13 @@ class AuthController extends Controller
         return redirect()->route('dashboard');
     }
 
+
     private function normalizePhone($phone)
     {
-        // hapus selain angka
+        // hapus semua selain angka
         $phone = preg_replace('/[^0-9]/', '', $phone);
 
-        // ubah 62 menjadi 0
+        // ubah +62 atau 62 menjadi 0
         if (substr($phone, 0, 2) == '62') {
             $phone = '0' . substr($phone, 2);
         }
