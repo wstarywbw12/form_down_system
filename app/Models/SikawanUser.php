@@ -10,10 +10,16 @@ class SikawanUser extends Model
     protected $table = 'users';
 
     protected $fillable = [
+        'pegawai_id',
         'username',
         'email',
         'password'
     ];
+
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class);
+    }
 
     public $timestamps = false;
 }

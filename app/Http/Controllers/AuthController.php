@@ -44,6 +44,8 @@ class AuthController extends Controller
                 ->withInput();
         }
 
+        $namaLengkap = $sikawanUser->pegawai->GelarDepan . ' ' . $sikawanUser->pegawai->nama  . $sikawanUser->pegawai->GelarBelakang;
+
         // cek password
         if (!Hash::check($request->password, $sikawanUser->password)) {
             return back()
@@ -60,7 +62,8 @@ class AuthController extends Controller
 
             if ($user) {
                 $user->update([
-                    'sikawan_id' => $sikawanUser->id
+                    'sikawan_id' => $sikawanUser->id,
+                    'name' => $namaLengkap,
                 ]);
             }
         }
@@ -68,7 +71,7 @@ class AuthController extends Controller
         if (!$user) {
             $user = User::create([
                 'sikawan_id' => $sikawanUser->id,
-                'name' => $sikawanUser->username,
+                'name' => $namaLengkap,
                 'email' => $sikawanUser->email,
                 'password' => $sikawanUser->password,
             ]);
